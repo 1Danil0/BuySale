@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:c="http://java.sun.com/JSP/Page">
+
+<body>
+
+<!--    <form th:object="${images}">-->
+<!--        <img th:src="/images/${images.get(0)}"/>-->
+<!--        <br>-->
+<!--        <img th:if="/images/${images.get(1)}" th:src="/images/${images.get(1)}"/>-->
+<!--        <br>-->
+<!--        <img th:if="/images/${images.get(2)}" th:src="/images/${images.get(2)}"/>-->
+<!--    </form>-->
+<!--    <form th:each="image : ${images}" >-->
+<!--        <img  th:attr="src=@{/images/${image.getId()}}" height="200px" />-->
+<!--    </form>-->
+<form th:each="image : ${images}" >
+    <img  th:src="@{/images/{imageId}(imageId=${image.getId()})}"  height="100px" />
+</form>
+
+
+    <form th:method="post" th:object="${product}" th:action="@{delete/{productId}(productId=${product.getId()})}">
+        <table >
+          Title: <tr th:text="${product.getTitle()}"></tr>
+            <br>
+            Price: <tr th:text="${product.getPrice()}"> </tr>
+            <br>
+            City: <tr th:text="${product.getCity()}"> </tr>
+            <br>
+            Author: <tr th:text="${product.getAuthor()}"> </tr>
+            <br>
+            Description: <tr th:text="${product.getDescription()}"> </tr>
+        </table>
+        <input type="submit" value="Delete">
+    </form>
+
+
+
+<button> <a th:href="@{/buysell/products}"> Back</a></button>
+
+
+
+</body>
+
+</html>

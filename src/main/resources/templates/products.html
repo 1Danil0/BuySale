@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+
+<h1>BUYSELL</h1>
+<br>
+<form action="products" method="get">
+    Поиск по названию <input type="text" name="title"/>
+    <input type="submit" value="Sort">
+</form>
+<h4>Products from all Russia:</h4>
+<br>
+<table>
+    <tr th:each="product : ${products}">
+        <td th:text="${product.getTitle()}"></td>
+        <td th:text="${product.getPrice()}"></td>
+        <td>
+            <a th:href="@{/buysell/products/{productId}(productId=${product.getId()})}">Details</a>
+        </td>
+    </tr>
+
+</table>
+
+<hr>
+Add new product:
+<form method="post" action="addProduct" enctype="multipart/form-data">
+    Enter title: <input type="text" name="title"/>
+    <br>
+    Enter description: <input type="text" name="description"/>
+    <br>
+    Enter price: <input type="number" name="price"/>
+    <br>
+    Enter city: <input type="text" name="city"/>
+    <br>
+    Enter author: <input type="text" name="author"/>
+    <br>
+    First photo: <input type="file" name="file1"/>
+    <br>
+    Second photo: <input type="file" name="file2"/>
+    <br>
+    Third photo: <input type="file" name="file3"/>
+    <br>
+    <input type="submit" value="add"/>
+</form>
+
+
+
+
+</body>
+
+</html>
