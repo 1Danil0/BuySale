@@ -22,12 +22,13 @@ public class Product {
     private String description;
     @Column(name = "price")
     private int price;
-    @Column(name = "author")
-    private String author;
     @Column(name = "city")
     private String city;
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "product")
     private List<Image> images = new ArrayList<>();
+    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
+    @JoinColumn
+    private User user;
     private long previewImage;
     private LocalDateTime creationDate;
     @PrePersist
@@ -39,12 +40,11 @@ public class Product {
     public Product() {
     }
 
-    public Product(long id, String title, String description, int price, String author, String city) {
+    public Product(long id, String title, String description, int price, String city) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.price = price;
-        this.author = author;
         this.city = city;
     }
     public void addImage(Image image){
@@ -59,9 +59,16 @@ public class Product {
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
                 ", price=" + price +
-                ", author='" + author + '\'' +
                 ", city='" + city + '\'' +
                 '}';
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public long getId() {
@@ -94,14 +101,6 @@ public class Product {
 
     public void setPrice(int price) {
         this.price = price;
-    }
-
-    public String getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(String author) {
-        this.author = author;
     }
 
     public String getCity() {

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<html xmlns:th="https://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>BuySell</title>
+</head>
+
+
+<body>
+<h2>BuySell</h2>
+<hr>
+<h4>Registration</h4>
+<br>
+<div style="color: red" th:if="${error}">
+    <p style="color: red" th:text="${error}" />
+</div>
+<form method="post" action="registration">
+    Enter user`s name: <input type="text" name="name" placeholder="Enter name">
+    <br>
+    Enter email: <input type="email" name="email" placeholder="Enter email"/>
+    <br>
+    Enter phone`s number:   <input type="text" name="phoneNumber" placeholder="Enter phoneNumber"/>
+    <br>
+    Enter password: <input type="password" name="password" placeholder="Enter password"/>
+    <br>
+    <input type="hidden" name="_csrf" th:value="${_csrf.token}">
+    <input type="submit" value="Sign"/>
+</form>
+
+
+</body>
+
+</html>

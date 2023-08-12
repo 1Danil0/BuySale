@@ -1,19 +1,14 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:c="http://java.sun.com/JSP/Page">
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>BuySell</title>
+</head>
 
 <body>
 
-<!--    <form th:object="${images}">-->
-<!--        <img th:src="/images/${images.get(0)}"/>-->
-<!--        <br>-->
-<!--        <img th:if="/images/${images.get(1)}" th:src="/images/${images.get(1)}"/>-->
-<!--        <br>-->
-<!--        <img th:if="/images/${images.get(2)}" th:src="/images/${images.get(2)}"/>-->
-<!--    </form>-->
-<!--    <form th:each="image : ${images}" >-->
-<!--        <img  th:attr="src=@{/images/${image.getId()}}" height="200px" />-->
-<!--    </form>-->
-<form th:each="image : ${images}" >
+
+<form th:each="image : ${images}">
     <img  th:src="@{/images/{imageId}(imageId=${image.getId()})}"  height="100px" />
 </form>
 
@@ -26,18 +21,16 @@
             <br>
             City: <tr th:text="${product.getCity()}"> </tr>
             <br>
-            Author: <tr th:text="${product.getAuthor()}"> </tr>
+            Author: <tr th:text="${product.getUser().getName()}"> </tr>
+            <br>
+            Phone: <tr th:text="${product.getUser().getPhoneNumber()}"></tr>
             <br>
             Description: <tr th:text="${product.getDescription()}"> </tr>
         </table>
         <input type="submit" value="Delete">
     </form>
 
-
-
 <button> <a th:href="@{/buysell/products}"> Back</a></button>
-
-
 
 </body>
 

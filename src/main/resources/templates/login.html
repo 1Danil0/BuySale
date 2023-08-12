@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>BuySell</title>
+</head>
+
+<body>
+    <form action="/login" method="post">
+        Email: <input type="text" name="username" placeholder="Enter email"/>
+        <br>
+        Password <input type="password" name="password" placeholder="enter password"/>
+        <br>
+        <input type="submit" value="login"/>
+        <input type="hidden" name="_csrf" th:value="${_csrf.token}">
+    </form>
+
+        <a th:href="@{/registration}"> Регистрация</a>
+
+</body>
+
+</html>
